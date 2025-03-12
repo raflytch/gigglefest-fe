@@ -5,25 +5,53 @@ import {
 } from "@tanstack/react-router";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
+import LoginPage from "./pages/LoginPage";
 import Layout from "./components/Layout";
 
-const rootRoute = createRootRoute({
+const rootRoute = createRootRoute();
+
+const layoutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  id: "layout",
   component: Layout,
 });
 
 const indexRoute = createRoute({
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => layoutRoute,
   path: "/",
   component: HomePage,
 });
 
 const aboutRoute = createRoute({
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => layoutRoute,
   path: "/about",
   component: AboutPage,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, aboutRoute]);
+const loginRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/login",
+  component: LoginPage,
+});
+
+const registerRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/register",
+  component: () => <div>Register Page (Coming Soon)</div>,
+});
+
+const forgotPasswordRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/forgot-password",
+  component: () => <div>Forgot Password Page (Coming Soon)</div>,
+});
+
+const routeTree = rootRoute.addChildren([
+  layoutRoute.addChildren([indexRoute, aboutRoute]),
+  loginRoute,
+  registerRoute,
+  forgotPasswordRoute,
+]);
 
 export const router = createRouter({
   routeTree,
