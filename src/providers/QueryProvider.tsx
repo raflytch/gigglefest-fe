@@ -14,11 +14,11 @@ const queryClient = new QueryClient({
   },
 });
 
-export function QueryProvider({ children }: QueryProviderProps) {
+export const QueryProvider = ({ children }: QueryProviderProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
-}
+};

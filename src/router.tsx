@@ -6,6 +6,7 @@ import {
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import Layout from "./components/Layout";
 
 const rootRoute = createRootRoute();
@@ -37,7 +38,7 @@ const loginRoute = createRoute({
 const registerRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/register",
-  component: () => <div>Register Page (Coming Soon)</div>,
+  component: RegisterPage,
 });
 
 const forgotPasswordRoute = createRoute({
