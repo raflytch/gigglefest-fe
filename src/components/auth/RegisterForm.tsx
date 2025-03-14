@@ -5,7 +5,10 @@ import { Label } from "@/components/ui/label";
 import { Eye, EyeOff } from "lucide-react";
 import { RegisterFormData, RegisterFormProps } from "@/types/auth";
 
-export const RegisterForm = ({ onSubmit, isPending }: RegisterFormProps) => {
+export const RegisterForm = ({
+  onSubmit,
+  isPending = false,
+}: RegisterFormProps) => {
   const [formData, setFormData] = useState<RegisterFormData>({
     email: "",
     password: "",
