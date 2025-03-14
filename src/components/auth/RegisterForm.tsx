@@ -39,7 +39,7 @@ export const RegisterForm = ({
           <Input
             id="name"
             name="name"
-            placeholder="John Doe"
+            placeholder="Enter your full name"
             value={formData.name}
             onChange={handleChange}
             required
@@ -52,7 +52,7 @@ export const RegisterForm = ({
             id="email"
             name="email"
             type="email"
-            placeholder="name@example.com"
+            placeholder="Enter your email address"
             value={formData.email}
             onChange={handleChange}
             required
@@ -66,6 +66,7 @@ export const RegisterForm = ({
               id="password"
               name="password"
               type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
               value={formData.password}
               onChange={handleChange}
               required
@@ -85,7 +86,7 @@ export const RegisterForm = ({
           <Input
             id="phoneNumber"
             name="phoneNumber"
-            placeholder="+1234567890"
+            placeholder="Enter your phone number"
             value={formData.phoneNumber}
             onChange={handleChange}
             required
@@ -99,6 +100,7 @@ export const RegisterForm = ({
             name="age"
             type="number"
             min="0"
+            placeholder="Enter your age"
             value={formData.age || ""}
             onChange={handleChange}
             required
