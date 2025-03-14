@@ -42,3 +42,8 @@ export interface ResendVerificationResponse {
     message: string;
   };
 }
+
+export interface ErrorResponse {
+  status: string;
+  message: string;
+}

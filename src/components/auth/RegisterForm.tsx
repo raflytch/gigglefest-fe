@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { RegisterFormData, RegisterFormProps } from "@/types/auth";
 
 export const RegisterForm = ({
@@ -110,7 +110,14 @@ export const RegisterForm = ({
           className="h-11 mt-2 border-0"
           disabled={isPending}
         >
-          {isPending ? "Creating account..." : "Create account"}
+          {isPending ? (
+            <>
+              <Loader2 className="animate-spin h-5 w-5" />
+              <span className="ml-2">Registering...</span>
+            </>
+          ) : (
+            "Register"
+          )}
         </Button>
       </div>
     </form>

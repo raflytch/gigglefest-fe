@@ -13,12 +13,13 @@ import { RegisterFormData } from "@/types/auth";
 import { useAuth } from "@/hooks/useAuth";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { AlertCircle } from "lucide-react";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { ErrorModal } from "./ErrorModal";
 
 export const RegisterPageContent = () => {
   const navigate = useNavigate();
-  const { registerMutation } = useAuth();
+  const { registerMutation, errorMessage, isErrorModalOpen, closeErrorModal } =
+    useAuth();
+
   const registrationEmail = useSelector(
     (state: RootState) => state.auth.registrationEmail
   );
@@ -49,17 +50,6 @@ export const RegisterPageContent = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {registerMutation.isError && (
-              <Alert variant="destructive" className="mb-6">
-                <AlertCircle className="h-4 w-4" />
-                <AlertDescription>
-                  {registerMutation.error instanceof Error
-                    ? registerMutation.error.message
-                    : "Registration failed. Please check your information and try again."}
-                </AlertDescription>
-              </Alert>
-            )}
-
             <RegisterForm
               onSubmit={handleSubmit}
               isPending={registerMutation.isPending}
@@ -80,6 +70,14 @@ export const RegisterPageContent = () => {
       </div>
 
       {registrationEmail && <VerificationModal />}
+
+      {isErrorModalOpen && (
+        <ErrorModal
+          message={errorMessage || "Registration failed"}
+          open={isErrorModalOpen}
+          onClose={closeErrorModal}
+        />
+      )}
     </>
   );
 };
